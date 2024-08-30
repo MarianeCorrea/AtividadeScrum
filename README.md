@@ -1,4 +1,4 @@
-### Documento Didático: Construção da Aplicação de Gestão de Livros e Usuários com React e Material-UI
+### Construção da Aplicação de Gestão de Livros e Usuários com React e Material-UI
 
 - - -
 
