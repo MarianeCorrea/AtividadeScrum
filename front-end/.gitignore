@@ -1,0 +1,105 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependency directories
+/.pnp
+.pnp.js
+
+# Production
+/build
+
+# Coverage directory used by tools like istanbul
+/coverage
+
+# Misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+/lerna-debug.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# Test coverage
+coverage
+*.lcov
+
+# Storybook
+storybook-static
+
+# Vite
+dist/
+
+# Next.js
+.next/
+out/
+
+# Nuxt.js
+.nuxt
+dist
+
+# Gatsby files
+.cache/
+public
+
+# Styleguidist
+/styleguide
+
+# Fusion.js
+.fusion/
+
+# temporary
+.tmp/
+
+# IDEs and editors
+/.idea
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# JetBrains IDEs
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# Intellij
+*.iml
+.idea
+
+# Visual Studio Code
+.vscode/
+.history/
+# files for macOS
+.DS_Store
+
+# files for Linux
+*.swp
+
+# files for Windows
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# SASS cache files
+.sass-cache/
+
+# folder config
+config/
+node_modules

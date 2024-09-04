@@ -1,0 +1,63 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f8ff;
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  text-align: center;
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  background-color: #333;
+  overflow: hidden;
+  margin: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000; /* Ensure the menu stays on top */
+}
+
+nav ul li {
+  float: left;
+}
+
+nav ul li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+nav ul li a:hover {
+  background-color: #111;
+}
+
+/* Add padding to ensure content is not overlapped by the menu */
+.container {
+  padding-top: 80px; /* Adjust this value if the menu height changes */
+}
+
+/* Home Page Styles */
+.MuiContainer-root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 60px; /* Adjust for the menu */
+}
+
+.MuiTypography-root {
+  color: #333;
+}
+
+.MuiButton-root {
+  width: 100%;
+  max-width: 200px;
+  margin: 10px 0;
+}
