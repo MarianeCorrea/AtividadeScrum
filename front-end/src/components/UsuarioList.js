@@ -1,7 +1,7 @@
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import Button from '@mui/material/Button';
-import Container from '@mui/material/Container'; 
+import Container from '@mui/material/Container';
 import IconButton from '@mui/material/IconButton';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -9,37 +9,54 @@ import ListItemSecondaryAction from '@mui/material/ListItemSecondaryAction';
 import ListItemText from '@mui/material/ListItemText';
 import TextField from '@mui/material/TextField';
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-
-
+ 
 function UsuarioList() {
   const [usuarios, setUsuarios] = useState([]);
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [editId, setEditId] = useState(null);
-
+ 
   const API_URL = 'http://localhost:8080/api/usuarios';
-
-  // Função para buscar todos os usuários
+ 
+ 
   const fetchUsuarios = async () => {
     try {
-      const response = await axios.get(API_URL);
-      setUsuarios(response.data);
+      const response = await fetch(API_URL);
+      if (!response.ok) throw new Error('Erro ao buscar usuários');
+      const data = await response.json();
+      setUsuarios(data);
     } catch (error) {
       console.error('Erro ao buscar usuários', error);
     }
   };
-
-  // Função para salvar um novo usuário ou atualizar um existente
+ 
   const handleSave = async () => {
     try {
+      const usuario = { nome, email };
       if (editId) {
-        await axios.put(`${API_URL}/${editId}`, { nome, email });
-        setUsuarios(usuarios.map(usuario => usuario.id === editId ? { id: editId, nome, email } : usuario));
+       
+        const response = await fetch(`${API_URL}/${editId}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(usuario),
+        });
+        if (!response.ok) throw new Error('Erro ao atualizar usuário');
+        const updatedUsuario = await response.json();
+        setUsuarios(usuarios.map(usuario => usuario.id === editId ? updatedUsuario : usuario));
         setEditId(null);
       } else {
-        await axios.post(API_URL, { nome, email });
-        const newUsuario = { id: usuarios.length + 1, nome, email };
+       
+        const response = await fetch(API_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(usuario),
+        });
+        if (!response.ok) throw new Error('Erro ao criar usuário');
+        const newUsuario = await response.json();
         setUsuarios([...usuarios, newUsuario]);
       }
       setNome('');
@@ -48,26 +65,29 @@ function UsuarioList() {
       console.error('Erro ao salvar usuário', error);
     }
   };
-
+ 
   const handleEdit = (usuario) => {
     setNome(usuario.nome);
     setEmail(usuario.email);
     setEditId(usuario.id);
   };
-
+ 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`${API_URL}/${id}`);
+      const response = await fetch(`${API_URL}/${id}`, {
+        method: 'DELETE',
+      });
+      if (!response.ok) throw new Error('Erro ao excluir usuário');
       setUsuarios(usuarios.filter(usuario => usuario.id !== id));
     } catch (error) {
       console.error('Erro ao excluir usuário', error);
     }
   };
-
+ 
   useEffect(() => {
     fetchUsuarios();
   }, []);
-
+ 
   return (
     <Container sx={{ paddingTop: '80px' }}>
       <h1>Lista de Usuários</h1>
@@ -108,5 +128,5 @@ function UsuarioList() {
     </Container>
   );
 }
-
+ 
 export default UsuarioList;
