@@ -60,7 +60,6 @@ Caso esteja usando o VSCode como IDE para executar o back-end do projeto, recome
 
 Após isso, vá até o arquivo application.properties
 ~~~shell
-demo
     └───src
         └───main
             └───resources
