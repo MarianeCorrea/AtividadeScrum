@@ -1,4 +1,4 @@
-package security;
+package com.biblioteca.demo.security;
 
 import java.io.IOException;
 import java.util.Collections;

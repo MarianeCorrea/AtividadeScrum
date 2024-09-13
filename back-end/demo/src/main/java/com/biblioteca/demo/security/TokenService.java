@@ -1,4 +1,4 @@
-package security;
+package com.biblioteca.demo.security;
 
 
 import java.time.Instant;
@@ -14,7 +14,6 @@ import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.biblioteca.demo.entity.Usuario;
 
-import ch.qos.logback.core.testUtil.TeeOutputStream;
 
 @Service
 public class TokenService {
