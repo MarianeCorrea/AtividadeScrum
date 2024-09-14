@@ -8,10 +8,7 @@ import Home from './components/Home';
 import LoginUser from './components/LoginUser';
 import { getAuthToken, setAuthToken } from './components/AuthToken'; // Ajuste o caminho conforme necessário
 import './App.css';
-<<<<<<< HEAD
-=======
 import Cadastro from './components/Cadastro';
->>>>>>> 40b417e3c4a2c5d5d4a805331d40234e267a202a
 
 // Componente de Rota Protegida
 const PrivateRoute = ({ component: Component, ...rest }) => {
@@ -63,12 +60,9 @@ function App() {
             <li>
               <Link to="/usuarios">Gerenciar Usuários</Link>
             </li>
-<<<<<<< HEAD
-=======
             <li>
               <Link to="/cadastro">Cadastro</Link>
             </li>
->>>>>>> 40b417e3c4a2c5d5d4a805331d40234e267a202a
             {isAuthenticated ? (
               <li>
                 <button onClick={handleLogout}>Sair</button>
@@ -81,12 +75,8 @@ function App() {
           </ul>
         </nav>
         <Switch>
-<<<<<<< HEAD
-          <Route path="/login">
-=======
           <Route path="/cadastro" component={Cadastro} />
           <Route path="/login">out
->>>>>>> 40b417e3c4a2c5d5d4a805331d40234e267a202a
             {isAuthenticated ? <Redirect to="/" /> : <LoginUser onLogin={handleLogin} />}
           </Route>
           <Route path="/" exact>

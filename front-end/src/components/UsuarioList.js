@@ -9,6 +9,7 @@ import ListItemSecondaryAction from '@mui/material/ListItemSecondaryAction';
 import ListItemText from '@mui/material/ListItemText';
 import TextField from '@mui/material/TextField';
 import React, { useState, useEffect } from 'react';
+import { getAuthToken } from './AuthToken';
  
 function UsuarioList() {
   const [usuarios, setUsuarios] = useState([]);
@@ -17,11 +18,15 @@ function UsuarioList() {
   const [editId, setEditId] = useState(null);
  
   const API_URL = 'http://localhost:8080/api/usuarios';
- 
+  const token = getAuthToken();
  
   const fetchUsuarios = async () => {
     try {
-      const response = await fetch(API_URL);
+      const response = await fetch(API_URL, {
+        headers: {
+          Authorization: token
+        },
+      });
       if (!response.ok) throw new Error('Erro ao buscar usuários');
       const data = await response.json();
       setUsuarios(data);
@@ -36,9 +41,10 @@ function UsuarioList() {
       if (editId) {
        
         const response = await fetch(`${API_URL}/${editId}`, {
-          method: 'PUT',
+          method: "PUT",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
+            Authorization: token
           },
           body: JSON.stringify(usuario),
         });
@@ -49,9 +55,10 @@ function UsuarioList() {
       } else {
        
         const response = await fetch(API_URL, {
-          method: 'POST',
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
+            Authorization: token
           },
           body: JSON.stringify(usuario),
         });
@@ -75,7 +82,8 @@ function UsuarioList() {
   const handleDelete = async (id) => {
     try {
       const response = await fetch(`${API_URL}/${id}`, {
-        method: 'DELETE',
+        method: "DELETE",
+        Authorization: token
       });
       if (!response.ok) throw new Error('Erro ao excluir usuário');
       setUsuarios(usuarios.filter(usuario => usuario.id !== id));
