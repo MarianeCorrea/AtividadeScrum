@@ -21,7 +21,7 @@ A biblioteca Majokam é o projeto da disciplina de Fullstack do curso de Anális
 É preciso ter o Node.js instalado.
 
 ### Back-end
-É preciso ter o Java Runtime Environment instalado.
+É preciso ter o JDK instalado na versão 21.
 
 ### IDE
 Para ambos, a IDE recomendada é o VS Code, mas fica a seu cargo escolher qual utilizar
@@ -51,8 +51,39 @@ Esse comando pode demorar alguns minutos para terminar a execução, dependendo 
 npm start
 ```
 ### Back-end
-### A concluir...
+### Instalando extensões
+Caso esteja usando o VSCode como IDE para executar o back-end do projeto, recomendamos fortemente a instalação destes dois pacotes de extensões para executar aplicações Java e Spring Boot respectivamente:
 
+[Extension Pack for Java](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack)
+<br>
+[Spring Boot Extension Pack](https://marketplace.visualstudio.com/items?itemName=vmware.vscode-boot-dev-pack)
+
+Após isso, vá até o arquivo application.properties
+~~~shell
+    └───src
+        └───main
+            └───resources
+                └───application.properties
+~~~
+E modifique as seguintes propriedades:
+~~~properties
+spring.datasource.username=<seu usuário do MySQL>
+spring.datasource.password=<senha desse usuário>
+~~~
+Acessando o MySQL com este usuário no seu computador, execute o seguinte código na linha de comando/query:
+~~~SQL
+CREATE DATABASE db_biblioteca;
+~~~
+Após isso, você pode executar a aplicação, caso haja um erro de versão, provavelmente será a versão do Java, como explicado anteriormente, a versão necessária é a 21, caso você não consiga instala-la, pode a modificar no arquivo pom.xml em:
+~~~shell
+demo
+    └───pom.xml
+~~~
+Lá, altere a seguinte linha de código para a versão desejada:
+~~~xml
+<java.version>21</java.version>
+~~~
+Tendo feito isso, sua aplicação deve executar normalmente.
 ## Contribuição
 
 Este é um projeto simples de faculdade, não há intenção por nossa parte de expandir o sistema, portanto não vimos necessidade de contribuição, no entanto, caso queira, pode entrar em contato com um dos integrantes para falar sobre o projeto.
