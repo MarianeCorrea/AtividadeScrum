@@ -9,20 +9,27 @@ import ListItem from '@mui/material/ListItem';
 import ListItemSecondaryAction from '@mui/material/ListItemSecondaryAction';
 import ListItemText from '@mui/material/ListItemText';
 import TextField from '@mui/material/TextField';
+import { getAuthToken } from './AuthToken';
  
 function LivroList() {
   const [livros, setLivros] = useState([]);
   const [titulo, setTitulo] = useState('');
   const [autor, setAutor] = useState('');
   const [editId, setEditId] = useState(null);
- 
+  
+  const token = getAuthToken();
+
   useEffect(() => {
     fetchLivros();
   }, []);
  
   const fetchLivros = async () => {
     try {
-      const response = await fetch('http://localhost:8080/api/livros');
+      const response = await fetch("http://localhost:8080/api/livros", {
+        headers: {
+          Authorization: token
+        },
+      });
       if (!response.ok) throw new Error('Erro ao buscar livros');
       const data = await response.json();
       setLivros(data);
@@ -40,6 +47,7 @@ function LivroList() {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
+            'Authorization':token
           },
           body: JSON.stringify(livro),
         });
@@ -49,10 +57,11 @@ function LivroList() {
         setEditId(null);
       } else {
      
-        const response = await fetch('http://localhost:8080/api/livros', {
-          method: 'POST',
+        const response = await fetch("http://localhost:8080/api/livros", {
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
+            Authorization: token
           },
           body: JSON.stringify(livro),
         });
@@ -76,7 +85,10 @@ function LivroList() {
   const handleDelete = async (id) => {
     try {
       const response = await fetch(`http://localhost:8080/api/livros/${id}`, {
-        method: 'DELETE',
+        method: "DELETE",
+        headers: {
+          Authorization: token
+        },
       });
       if (!response.ok) throw new Error('Erro ao deletar livro');
      
