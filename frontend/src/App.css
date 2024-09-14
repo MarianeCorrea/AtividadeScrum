@@ -19,7 +19,8 @@ nav ul {
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 1000; /* Ensure the menu stays on top */
+  z-index: 1000;
+  /* Ensure the menu stays on top */
 }
 
 nav ul li {
@@ -40,7 +41,8 @@ nav ul li a:hover {
 
 /* Add padding to ensure content is not overlapped by the menu */
 .container {
-  padding-top: 80px; /* Adjust this value if the menu height changes */
+  padding-top: 80px;
+  /* Adjust this value if the menu height changes */
 }
 
 /* Home Page Styles */
@@ -49,7 +51,8 @@ nav ul li a:hover {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-top: 60px; /* Adjust for the menu */
+  margin-top: 60px;
+  /* Adjust for the menu */
 }
 
 .MuiTypography-root {
